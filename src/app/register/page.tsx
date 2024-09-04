@@ -62,10 +62,10 @@ export default async function Register(){
                     Sign up &rarr;
                 </button>
 
-                <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
-                    Already have an account? <Link href="/login">Login</Link>
-                </p>
             </form>
+                <p className="text-neutral-600 text-sm max-w-sm dark:text-neutral-300">
+                    Already have an account? <Link href="/login" className='hover:underline'>Login</Link>
+                </p>
         </div>
     );
 }
