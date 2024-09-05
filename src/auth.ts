@@ -1,11 +1,22 @@
 import NextAuth, {CredentialsSignin} from "next-auth"
 import Credentials from "next-auth/providers/credentials";
 import connectDB from "@/dbConfig/dbConfig";
-import {User} from '@/models/User'
-import {compare} from "bcryptjs"
+import {User} from '@/models/User';
+import {compare} from "bcryptjs";
+import Github from "next-auth/providers/github";
+import Google from "next-auth/providers/google"
 //Destructing NextAuth
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
+        Github({
+            clientId: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        }),
+        Google({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_ID
+        }),
+
         Credentials({
             //Specify name of provider
             name: 'Credentials',

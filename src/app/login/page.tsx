@@ -2,6 +2,8 @@ import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {IconBrandGithub, IconBrandGoogle} from '@tabler/icons-react'
 import Link from "next/link";
+import {login} from "@/action/user";
+import {signIn} from "@/auth";
 
 export default function LoginPage(){
     return (
@@ -9,7 +11,7 @@ export default function LoginPage(){
         md:border md:border-[#121212] dark:bg-white '>
             <h2 className='font-bold text-2xl'>Welcome to Tribe</h2>
             <p className='font-medium mt-2'>Please login.</p>
-            <form className='mt-6 flex flex-col gap-3'>
+            <form className='mt-6 flex flex-col gap-3' action={login}>
                 <div className='flex flex-col gap-3'>
                     <Label htmlFor="email">Email Address</Label>
                     <Input
@@ -44,7 +46,11 @@ export default function LoginPage(){
 
             </form>
             <section className='flex gap-2'>
-                <form className='w-1/2'>
+                <form className='w-1/2'
+                    action={async () => {
+                        'use server'
+                        await signIn('github')
+                    }}>
                     <button className='relative group/btn flex space-x-2 items-center justify-start w-full px-4
                         text-black rounded-md h-10 font-medium shadow-input bg-gray-200 dark:bg-zinc-900
                         dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]' type='submit'>
@@ -52,7 +58,11 @@ export default function LoginPage(){
                         <span className="text-neutral-700 dark:text-neutral-300 text-sm">Github</span>
                     </button>
                 </form>
-                <form className='w-1/2'>
+                <form className='w-1/2'
+                    action={async () => {
+                        'use server'
+                        await signIn('google');
+                    }}>
                     <button className='relative group/btn flex space-x-2 items-center justify-start w-full px-4
                         text-black rounded-md h-10 font-medium shadow-input bg-gray-200 dark:bg-zinc-900
                         dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]' type='submit'>
