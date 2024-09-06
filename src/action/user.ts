@@ -52,4 +52,12 @@ const register = async (formData: FormData) => {
     redirect("/login");
 };
 
-export  {register , login};
+const fetachAllUsers = async () => {
+    await connectDB();
+    const users = await User.find({});
+    return users;
+
+}
+
+
+export  {register , login, fetachAllUsers};
