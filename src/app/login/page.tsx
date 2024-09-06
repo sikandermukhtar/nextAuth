@@ -3,9 +3,17 @@ import {Input} from "@/components/ui/input";
 import {IconBrandGithub, IconBrandGoogle} from '@tabler/icons-react'
 import Link from "next/link";
 import {login} from "@/action/user";
-import {signIn} from "@/auth";
+import {signIn, auth} from "@/auth";
+import {redirect} from "next/navigation";
+import {getSession} from "@/lib/getSession";
 
-export default function LoginPage(){
+export default async function LoginPage(){
+
+    const session = await getSession();
+    const user = session?.user;
+    if (user) redirect('/')
+
+
     return (
         <div className='mt-10 max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white
         md:border md:border-[#121212] dark:bg-white '>

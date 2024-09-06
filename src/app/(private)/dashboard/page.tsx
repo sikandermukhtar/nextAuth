@@ -7,7 +7,14 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import {getSession} from "@/lib/getSession";
+import {redirect} from "next/navigation";
 const Dashboard = async () => {
+
+    const session = await getSession();
+    const user = session?.user;
+    if (!user) redirect('/')
+
 
     return (
         <div className="flex min-h-screen">
